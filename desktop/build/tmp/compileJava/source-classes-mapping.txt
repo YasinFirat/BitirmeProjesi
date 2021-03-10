@@ -1,0 +1,2 @@
+com/pixempires/game/desktop/DesktopLauncher.java
+ com.pixempires.game.desktop.DesktopLauncher
