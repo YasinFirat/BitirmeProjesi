@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Bitirme_Projesi.iml" filepath="$PROJECT_DIR$/.idea/modules/Bitirme_Projesi.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android/Bitirme_Projesi.android.iml" filepath="$PROJECT_DIR$/.idea/modules/android/Bitirme_Projesi.android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Bitirme_Projesi.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Bitirme_Projesi.core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/desktop/Bitirme_Projesi.desktop.iml" filepath="$PROJECT_DIR$/.idea/modules/desktop/Bitirme_Projesi.desktop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BitirmeProjesi.iml" filepath="$PROJECT_DIR$/.idea/modules/BitirmeProjesi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android/BitirmeProjesi.android.iml" filepath="$PROJECT_DIR$/.idea/modules/android/BitirmeProjesi.android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/BitirmeProjesi.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/BitirmeProjesi.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/desktop/BitirmeProjesi.desktop.iml" filepath="$PROJECT_DIR$/.idea/modules/desktop/BitirmeProjesi.desktop.iml" />
     </modules>
   </component>
 </project>
