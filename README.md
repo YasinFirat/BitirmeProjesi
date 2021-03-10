@@ -1,2 +1,2 @@
 # BitirmeProjesi
- Oyun Yapılacak
+LibGDX ile Oyun Yapılacak
