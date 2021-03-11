@@ -5,29 +5,30 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.pixempires.game.states.MenuState;
+import com.pixempires.game.states.StateManager;
 
 public class PixEmpires extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
+	SpriteBatch sprite_batch;
+
+	private static StateManager state_manager;
 	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		state_manager=new StateManager();
+		sprite_batch=new SpriteBatch();
+		state_manager.push(new MenuState(state_manager));
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+		state_manager.render(sprite_batch);
+		state_manager.update(Gdx.graphics.getDeltaTime());
 	}
 	
 	@Override
 	public void dispose () {
-		batch.dispose();
-		img.dispose();
+		sprite_batch.dispose();
 	}
 }

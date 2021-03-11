@@ -8,6 +8,6 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		new LwjglApplication(new PixEmpires(), config);
-		System.out.println("Desktop Çalıştı");
+
 	}
 }

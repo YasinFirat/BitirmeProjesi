@@ -1,44 +1,82 @@
 package com.pixempires.game.buttons;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
 
-public class Button {
+public abstract class Button {
     private TextureRegion button_image;
     private Rectangle button_rect;
-    private float x_kord,y_kord,width,height;
+    private Vector2 position;
+    private Vector2 scale;
+
+    public TextureRegion getButton_image() {
+        return button_image;
+    }
+
+    public void setButton_image(TextureRegion button_image) {
+        this.button_image = button_image;
+    }
 
     private Button(){}
 
-    public Button(float x_kord,float y_kord,TextureRegion button_image){
-        this.x_kord=x_kord;
-        this.y_kord=y_kord;
-        width=100;
-        height=100;
+    public Button(Vector2 position,TextureRegion button_image){
+        this.position=position;
+        scale=new Vector2(100,100);
         this.button_image=button_image;
 
-        button_rect=new Rectangle(x_kord,y_kord,width,height);
+        button_rect=new Rectangle(position.x,position.y,scale.x,scale.y);
     }
-    public Button(float x_kord,float y_kord,float width,float height,TextureRegion button_image){
-        this.x_kord=x_kord;
-        this.y_kord=y_kord;
-        this.width=width;
-        this.height=height;
+    public Button(Vector2 position,Vector2 scale,TextureRegion button_image){
+        this.position=position;
+        this.scale=scale;
+
         this.button_image=button_image;
 
-        button_rect=new Rectangle(x_kord,y_kord,width,height);
+        button_rect=new Rectangle(position.x,position.y,scale.x,scale.y);
     }
 
     public void render(SpriteBatch sprite_batch){
         sprite_batch.begin();
-        sprite_batch.draw(button_image,x_kord,y_kord,width,height);
+        sprite_batch.draw(button_image,position.x,position.y,scale.x,scale.y);
         sprite_batch.end();
     }
 
     public Rectangle getButtonRect(){
         return  button_rect;
     }
+    public Vector2 getPosition(){
+        return position;
+    }
+    public Vector2 getScale(){
+        return scale;
+    }
+    public void setPosition(Vector2 position){
+        this.position=position;
+    }
+    public void setScale(Vector2 scale){
+        this.scale=scale;
+    }
+
+    /**
+     * Eğer duruma göre farklılık gösteren bir olay varsa kullanılır.
+     * @param touchPosition tıklanma pozisyonu
+     * @return
+     */
+    public boolean isClicked(Vector2 touchPosition){
+        if(getButtonRect().contains(touchPosition)){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Eğer sürekli kullanmak istediğiniz bir olay varsa buraya yazılır.Default olarak kendi olayınızı yazabilirsiniz.
+     * @param touchPosition tıklanma pozisyonu
+     */
+    public abstract void doSomething(Vector2 touchPosition);
 
 }

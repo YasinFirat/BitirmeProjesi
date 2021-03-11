@@ -1,8 +1,18 @@
-com/pixempires/game/PixEmpires.java
- com.pixempires.game.PixEmpires
-com/pixempires/game/states/MenuState.java
- com.pixempires.game.states.MenuState
-com/pixempires/game/states/States.java
- com.pixempires.game.states.States
+com/pixempires/game/states/State.java
+ com.pixempires.game.states.State
+com/pixempires/game/states/StateManager.java
+ com.pixempires.game.states.StateManager
+com/pixempires/game/states/PlayState.java
+ com.pixempires.game.states.PlayState
+com/pixempires/game/sprites/SpriteLoader.java
+ com.pixempires.game.sprites.SpriteLoader
 com/pixempires/game/states/LevelState.java
  com.pixempires.game.states.LevelState
+com/pixempires/game/states/MenuState.java
+ com.pixempires.game.states.MenuState
+com/pixempires/game/buttons/Button.java
+ com.pixempires.game.buttons.Button
+com/pixempires/game/PixEmpires.java
+ com.pixempires.game.PixEmpires
+com/pixempires/game/buttons/StartButton.java
+ com.pixempires.game.buttons.StartButton
