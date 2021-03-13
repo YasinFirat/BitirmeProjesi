@@ -33,7 +33,7 @@ public class MenuState extends State {
         if(Gdx.input.justTouched()){
             System.out.println("Menu Touch");
             touch_position=new Vector2(Gdx.input.getX(),Gdx.input.getY());
-
+            state_manager.set(new PlayState(state_manager));
             button_start.doSomething(touch_position);
 
         }

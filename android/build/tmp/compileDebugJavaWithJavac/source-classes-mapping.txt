@@ -1,0 +1,4 @@
+com/pixempires/game/AndroidLauncher.java
+ com.pixempires.game.AndroidLauncher
+com/pixempires/game/BuildConfig.java
+ com.pixempires.game.BuildConfig

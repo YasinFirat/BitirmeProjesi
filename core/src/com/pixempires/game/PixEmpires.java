@@ -9,6 +9,8 @@ import com.pixempires.game.states.MenuState;
 import com.pixempires.game.states.StateManager;
 
 public class PixEmpires extends ApplicationAdapter {
+	public static final int WIDTH = 1280;
+	public static final int HEIGHT = 720;
 	SpriteBatch sprite_batch;
 
 	private static StateManager state_manager;
