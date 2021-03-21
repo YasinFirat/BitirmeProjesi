@@ -3,6 +3,7 @@ package com.pixempires.game.states;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
+import com.pixempires.game.PixEmpires;
 
 public abstract class State {
     protected OrthographicCamera camera;
@@ -11,6 +12,7 @@ public abstract class State {
 
     public State(StateManager state_manager){
         camera=new OrthographicCamera();
+
         this.state_manager=state_manager;
         touch_position=new Vector3();
     }
