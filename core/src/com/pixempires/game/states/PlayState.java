@@ -27,6 +27,7 @@ public class PlayState extends State {
                 .Split1D(45,37,46,39,9,180).circleTime(1f).setPosition(100,100);
         camera.setToOrtho(false,PixEmpires.WIDTH/2,PixEmpires.HEIGHT/2);
         arrow=new Arrow();
+
     }
     public void create() {
 

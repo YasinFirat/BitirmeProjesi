@@ -7,21 +7,16 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- *
+ * Her bir nesne bir GameObject'tir.
  */
-public abstract class GameObject {
+public abstract class GameObject extends Component{
+
     protected Texture texture;
     protected TextureRegion sprite;
     protected Vector2 position;
     protected Vector2 scale;
 
-
-
-    public GameObject(Texture texture,int begin_x,int begin_y,int width,int heigth){
-        this.texture=texture;
-        sprite=new TextureRegion(texture,begin_x,begin_y,width,heigth);
-        position=new Vector2(100,150);
-        scale=new Vector2(width,heigth);
+    protected GameObject() {
     }
     protected GameObject(Texture texture){
         this.texture=texture;
@@ -30,7 +25,11 @@ public abstract class GameObject {
         scale=new Vector2(texture.getWidth(),texture.getHeight());
     }
 
-    protected GameObject() {
+    protected GameObject(Texture texture,int begin_x,int begin_y,int width,int heigth){
+        this.texture=texture;
+        sprite=new TextureRegion(texture,begin_x,begin_y,width,heigth);
+        position=new Vector2(100,150);
+        scale=new Vector2(width,heigth);
     }
 
     public Vector2 getScale() {
@@ -59,25 +58,35 @@ public abstract class GameObject {
         this.position.y = y-scale.y/2;
         return this;
     }
+
+    /**
+     * Nesne'nin hareket etmesini sağlar
+     * @param direction hareket yönü belirlenir.
+     * @param speed hız belirler. (kare hızı ile çarpmayı unutmayın.)
+     * @return
+     */
     public GameObject move(Vector2 direction,float speed){
         position.x+=direction.x*speed;
         position.y+=direction.y*speed;
         return this;
     }
 
-
-
-
-
     public void render(SpriteBatch sprite_batch){
         sprite_batch.begin();
         sprite_batch.draw(sprite,getPosition().x,getPosition().y,getScale().x,getScale().y);
         sprite_batch.end();
     }
+
+    /**
+     * sonsuz bir döngü
+     * @param delta kare hızı
+     */
+    public abstract void update(float delta);
+    public abstract void dispose();
     public TextureRegion getTextureRegion(){
         return sprite;
     }
-    public  void update(){
 
-    }
+
+
 }
