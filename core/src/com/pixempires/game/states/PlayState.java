@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.pixempires.game.GameWorld;
 import com.pixempires.game.PixEmpires;
 import com.pixempires.game.animations.Animation;
 import com.pixempires.game.gameobjects.Arrow;
@@ -12,6 +13,10 @@ import com.pixempires.game.gameobjects.Component;
 import com.pixempires.game.gameobjects.GameObject;
 
 public class PlayState extends State {
+
+    private GameWorld gameWorld;
+
+
     private TextureRegion back_ground_reg;
     private TextureRegion[] archers=new TextureRegion[4];
     private Animation archer;
@@ -20,6 +25,9 @@ public class PlayState extends State {
 
     public PlayState(StateManager state_manager) {
         super(state_manager);
+        gameWorld=new GameWorld();
+
+
         Texture back_ground=new Texture("map_1.png");
         Texture archer_tex=new Texture("spr_ArcherAttack_strip_NoBkg.png");
         back_ground_reg=new TextureRegion(back_ground);
@@ -38,6 +46,7 @@ public class PlayState extends State {
         sprite_batch.setProjectionMatrix(camera.combined);
 
 
+
         sprite_batch.begin();
 
         sprite_batch.draw(back_ground_reg,0,0,PixEmpires.WIDTH/2,PixEmpires.HEIGHT/2);
@@ -48,6 +57,9 @@ public class PlayState extends State {
         sprite_batch.end();
         archer.render(sprite_batch);
         arrow.render(sprite_batch);
+
+
+        gameWorld.render(sprite_batch);
 
     }
     public void update(float delta) {

@@ -14,7 +14,7 @@ public class MenuState extends State {
     private Vector2 touch_position;
     public MenuState(StateManager state_manager) {
         super(state_manager);
-        texture=new Texture("badlogic.jpg");
+        texture=new Texture("btn_attack.png");
         button_start=new StartButton(new Vector2(10,200),new TextureRegion(texture));
     }
 

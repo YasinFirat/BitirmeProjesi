@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 
 public abstract class Character extends GameObject {
 
+    public Health health;
+    public Attack attack;
     public Character(){
         super();
     }
