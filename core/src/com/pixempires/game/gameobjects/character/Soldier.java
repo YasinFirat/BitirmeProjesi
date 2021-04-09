@@ -1,8 +1,11 @@
-package com.pixempires.game.gameobjects;
+package com.pixempires.game.gameobjects.character;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.pixempires.game.skills.Attack;
 
 public abstract class Soldier extends Character {
+    public Attack attack;
+
     public Soldier(){
         super();
     }

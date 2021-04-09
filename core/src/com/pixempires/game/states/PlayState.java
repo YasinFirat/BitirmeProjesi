@@ -1,6 +1,5 @@
 package com.pixempires.game.states;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -8,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.pixempires.game.GameWorld;
 import com.pixempires.game.PixEmpires;
 import com.pixempires.game.animations.Animation;
-import com.pixempires.game.gameobjects.Arrow;
+import com.pixempires.game.gameobjects.character.archer.Archer;
 import com.pixempires.game.gameobjects.Component;
 import com.pixempires.game.gameobjects.GameObject;
 
@@ -32,9 +31,11 @@ public class PlayState extends State {
         Texture archer_tex=new Texture("spr_ArcherAttack_strip_NoBkg.png");
         back_ground_reg=new TextureRegion(back_ground);
         archer=new Animation(archer_tex)
-                .Split1D(45,37,46,39,9,180).circleTime(1f).setPosition(100,100);
+                .Split1D(45,37,46,39,9,180)
+                .circleTime(1f)
+                .setPosition(100,100);
         camera.setToOrtho(false,PixEmpires.WIDTH/2,PixEmpires.HEIGHT/2);
-        arrow=new Arrow();
+        arrow=new Archer();
 
     }
     public void create() {

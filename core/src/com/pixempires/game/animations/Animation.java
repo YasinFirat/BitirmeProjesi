@@ -5,19 +5,46 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
+
 /**
- * Islevi daha sonra belirlenecek.
+ * Sprite parcalama ve 2D Animasyon olusturma islemi yapar.
  */
 public class Animation {
+    /**
+     * Animasyon frame'lerinin bulundugu texture dosyasını ekleyiniz.
+     */
     private Texture texture_of_sprite;
+    /**
+     * Her frame bu diziye sırasıyla eklenir.
+     */
     private TextureRegion[] sprite;
+    /**
+     * Toplam frame sayisi
+     */
     private int frameCount;
+    /**
+     * frame bitim suresi
+     */
     private float maxFrameTime;
+    /**
+     * Aktif olarak frame suresini gosterir.
+     */
     private float currentFrameTime;
+    /**
+     * Aktif olarak calisan frame gosterilir.
+     */
     private int frame;
+    /**
+     * Pazisyon islemi yapilir.
+     */
     private Vector2 position=new Vector2().setZero();
+    /**
+     * Boyut icin islem yapilir.
+     */
     private Vector2 scale=new Vector2().setZero();
-
+    /**
+     * Son frame calistiginda true olur.
+     */
     private boolean isLastFrame;
 
 
@@ -49,7 +76,7 @@ public class Animation {
     }
 
     /**
-     * Texture'de bulunan gorselleri x eksenine göre parcalar.
+     * Texture'de bulunan gorselleri x eksenine göre parcalama algoritması
      * @param begin_x Texture,baslangic x noktası
      * @param begin_y Texture, baslangıc y noktası
      * @param width  goruntunun genisligi
@@ -61,19 +88,32 @@ public class Animation {
      */
     public Animation Split1D(int begin_x, int begin_y, int width, int height, int frameCount, int space_x_frame){
         this.frameCount=frameCount;
-        sprite=new TextureRegion[frameCount];
-        int keep_begin_x=begin_x;
+        sprite=new TextureRegion[frameCount]; //sprite boyutu girilir.
+        int keep_begin_x=begin_x; //baslangic noktasi tutulur.
         maxFrameTime=.5f/frameCount;
         for (int i=0; i<frameCount;i++){
             sprite[i]=new TextureRegion(texture_of_sprite,begin_x,begin_y,width,height);
             if(space_x_frame==0){
-                begin_x+=width;
+                begin_x+=width; //eger arada bosluk yoksa yeni frame icin genislik baz alinir.
             }else{
-                begin_x=i*space_x_frame+keep_begin_x;
+                begin_x=i*space_x_frame+keep_begin_x; //arada bosluk varsa
             }
         }
         return this;
     }
+
+    /**
+     * Parcalama icin sadece bir TextureRegion dizisi eklemeniz yeterli olacaktir.
+     * @param sprite
+     * @return
+     */
+    public Animation Split1DManual(TextureRegion[] sprite){
+        this.sprite=sprite;
+        frameCount=sprite.length;
+        maxFrameTime=.5f/frameCount;
+        return  this;
+    }
+
 
     /**
      * Metod test edilmedi fakat dogru calistigindan eminim :)
@@ -120,6 +160,11 @@ public class Animation {
         maxFrameTime=circle_time/frameCount;
         return this;
     }
+
+    /**
+     * Frame'e bagli olarak aktif olan goruntu dondurulur.
+     * @return
+     */
     public TextureRegion getFrame(){
         return sprite[frame];
     }

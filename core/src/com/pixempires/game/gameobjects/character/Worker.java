@@ -1,6 +1,7 @@
-package com.pixempires.game.gameobjects;
+package com.pixempires.game.gameobjects.character;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.pixempires.game.gameobjects.character.Character;
 
 public abstract class Worker extends Character {
 

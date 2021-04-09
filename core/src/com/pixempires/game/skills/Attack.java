@@ -1,4 +1,4 @@
-package com.pixempires.game.gameobjects;
+package com.pixempires.game.skills;
 
 public class Attack {
     private int damage;
@@ -44,7 +44,7 @@ public class Attack {
         return attack_distance;
     }
 
-    public Attack setAttack_distance(int attack_distance) {
+    public Attack setAttackDistance(int attack_distance) {
         this.attack_distance = attack_distance;
         return this;
     }

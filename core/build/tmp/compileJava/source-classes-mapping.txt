@@ -1,37 +1,43 @@
 com/pixempires/game/states/State.java
  com.pixempires.game.states.State
-com/pixempires/game/states/StateManager.java
- com.pixempires.game.states.StateManager
-com/pixempires/game/buttons/StartButton.java
- com.pixempires.game.buttons.StartButton
-com/pixempires/game/gameobjects/GameObject.java
- com.pixempires.game.gameobjects.GameObject
-com/pixempires/game/buttons/Button.java
- com.pixempires.game.buttons.Button
-com/pixempires/game/animations/Animation.java
- com.pixempires.game.animations.Animation
-com/pixempires/game/states/LevelState.java
- com.pixempires.game.states.LevelState
-com/pixempires/game/gameobjects/Component.java
- com.pixempires.game.gameobjects.Component
-com/pixempires/game/PixEmpires.java
- com.pixempires.game.PixEmpires
-com/pixempires/game/buttons/DefanceButton.java
- com.pixempires.game.buttons.DefanceButton
-com/pixempires/game/buttons/AttackButton.java
- com.pixempires.game.buttons.AttackButton
 com/pixempires/game/gameobjects/Character.java
  com.pixempires.game.gameobjects.Character
 com/pixempires/game/gameobjects/Arrow.java
  com.pixempires.game.gameobjects.Arrow
 com/pixempires/game/gameobjects/Soldier.java
  com.pixempires.game.gameobjects.Soldier
+com/pixempires/game/gameobjects/Component.java
+ com.pixempires.game.gameobjects.Component
+com/pixempires/game/states/LevelState.java
+ com.pixempires.game.states.LevelState
 com/pixempires/game/gameobjects/Worker.java
  com.pixempires.game.gameobjects.Worker
 com/pixempires/game/buttons/BackOffButton.java
  com.pixempires.game.buttons.BackOffButton
+com/pixempires/game/gameobjects/GameObject.java
+ com.pixempires.game.gameobjects.GameObject
+com/pixempires/game/animations/Animation.java
+ com.pixempires.game.animations.Animation
+com/pixempires/game/buttons/StartButton.java
+ com.pixempires.game.buttons.StartButton
+com/pixempires/game/buttons/DefanceButton.java
+ com.pixempires.game.buttons.DefanceButton
+com/pixempires/game/gameobjects/Statue.java
+ com.pixempires.game.gameobjects.Statue
+com/pixempires/game/PixEmpires.java
+ com.pixempires.game.PixEmpires
+com/pixempires/game/states/StateManager.java
+ com.pixempires.game.states.StateManager
+com/pixempires/game/gameobjects/Attack.java
+ com.pixempires.game.gameobjects.Attack
 com/pixempires/game/states/MenuState.java
  com.pixempires.game.states.MenuState
+com/pixempires/game/buttons/AttackButton.java
+ com.pixempires.game.buttons.AttackButton
+com/pixempires/game/gameobjects/Health.java
+ com.pixempires.game.gameobjects.Health
+com/pixempires/game/buttons/Button.java
+ com.pixempires.game.buttons.Button
 com/pixempires/game/GameWorld.java
  com.pixempires.game.GameWorld
 com/pixempires/game/states/PlayState.java

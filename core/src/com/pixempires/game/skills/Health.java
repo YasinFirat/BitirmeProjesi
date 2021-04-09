@@ -1,4 +1,4 @@
-package com.pixempires.game.gameobjects;
+package com.pixempires.game.skills;
 
 public class Health {
     private int health;
