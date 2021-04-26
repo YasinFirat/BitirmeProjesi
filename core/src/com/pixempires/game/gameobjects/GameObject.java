@@ -17,8 +17,10 @@ public abstract class GameObject extends Component{
     protected Vector2 scale;
 
     protected GameObject() {
+        System.out.println("GameObject");
     }
     protected GameObject(Texture texture){
+
         this.texture=texture;
         sprite=new TextureRegion(texture);
         position=new Vector2(100,150);
@@ -71,12 +73,7 @@ public abstract class GameObject extends Component{
         return this;
     }
 
-    public void render(SpriteBatch sprite_batch){
-        sprite_batch.begin();
-        sprite_batch.draw(sprite,getPosition().x,getPosition().y,getScale().x,getScale().y);
-        sprite_batch.end();
-    }
-
+    public abstract void render(SpriteBatch sprite_batch);
     /**
      * sonsuz bir döngü
      * @param delta kare hızı

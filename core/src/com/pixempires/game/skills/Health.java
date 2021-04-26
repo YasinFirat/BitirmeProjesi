@@ -1,8 +1,8 @@
 package com.pixempires.game.skills;
 
 public class Health {
-    private int health;
-    private int maxHealth;
+    private int health=100;
+    private int maxHealth=100;
     private final int minHealth=0;
     /**
      * Saglik dusurulme islemi yapilir.

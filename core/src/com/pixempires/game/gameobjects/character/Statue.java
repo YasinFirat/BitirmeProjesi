@@ -1,6 +1,7 @@
 package com.pixempires.game.gameobjects.character;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.pixempires.game.gameobjects.character.Character;
 
 /**
@@ -8,6 +9,8 @@ import com.pixempires.game.gameobjects.character.Character;
  */
 public class Statue extends Character {
     public Statue() {
+        System.out.println("Statue");
+
     }
 
     public Statue(Texture texture) {
@@ -16,6 +19,11 @@ public class Statue extends Character {
 
     public Statue(Texture texture, int begin_x, int begin_y, int width, int heigth) {
         super(texture, begin_x, begin_y, width, heigth);
+    }
+
+    @Override
+    public void render(SpriteBatch sprite_batch) {
+
     }
 
     public void update(float delta) {

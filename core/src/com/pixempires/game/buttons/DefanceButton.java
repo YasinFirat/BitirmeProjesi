@@ -16,4 +16,9 @@ public class DefanceButton extends Button {
     public void doSomething(Vector2 touchPosition) {
 
     }
+
+    @Override
+    public void doSomething() {
+
+    }
 }

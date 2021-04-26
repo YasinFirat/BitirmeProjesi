@@ -3,7 +3,10 @@ package com.pixempires.game.buttons;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.ArrayList;
+
 public class CreateCharacterButton extends Button {
+
     public CreateCharacterButton(Vector2 position, TextureRegion button_image) {
         super(position, button_image);
     }
@@ -16,6 +19,12 @@ public class CreateCharacterButton extends Button {
     public void doSomething(Vector2 touchPosition) {
 
     }
+
+
+    public void doSomething() {
+
+    }
+
     public CreateCharacterButton(Vector2 position, TextureRegion button_image,int a){
         super(position, button_image);
     }

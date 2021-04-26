@@ -16,4 +16,9 @@ public class BackOffButton extends Button {
     public void doSomething(Vector2 touchPosition) {
 
     }
+
+    @Override
+    public void doSomething() {
+
+    }
 }

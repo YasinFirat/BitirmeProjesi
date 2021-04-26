@@ -1,9 +1,9 @@
 package com.pixempires.game.skills;
 
 public class Attack {
-    private int damage;
-    private int attack_speed;
-    private int attack_distance;
+    private int damage=10;
+    private int attack_speed=1;
+    private int attack_distance=1;
 
     /**
      * Saldiri hasarini olusturur.

@@ -16,8 +16,14 @@ public class StartButton extends Button {
 
 
     public void doSomething(Vector2 touch_position) {
+        System.out.println("doSomething" + isClicked(touch_position));
         if(isClicked(touch_position)){
             System.out.println("Start Button");
         }
+    }
+
+    @Override
+    public void doSomething() {
+
     }
 }

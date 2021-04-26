@@ -13,7 +13,14 @@ public class AttackButton extends Button {
     }
 
     @Override
-    public void doSomething(Vector2 touchPosition) {
+    public void doSomething(Vector2 touch_position) {
+        if(isClicked(touch_position)){
+            System.out.println("Attack");
+        }
+    }
+
+    @Override
+    public void doSomething() {
 
     }
 }

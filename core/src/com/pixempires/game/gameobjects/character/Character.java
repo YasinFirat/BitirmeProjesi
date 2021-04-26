@@ -7,13 +7,12 @@ import com.pixempires.game.skills.Health;
 
 public abstract class Character extends GameObject {
 
-    private Health health;
+    private Health health=new Health();
     private Animation animation;
-
-
 
     public Character(){
         super();
+        System.out.println("Character ");
     }
     public Character(Texture texture){
         super(texture);
