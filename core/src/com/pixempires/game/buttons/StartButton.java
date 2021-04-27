@@ -3,6 +3,8 @@ package com.pixempires.game.buttons;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.pixempires.game.states.PlayState;
+import com.pixempires.game.states.StateManager;
 
 public class StartButton extends Button {
 
@@ -16,9 +18,13 @@ public class StartButton extends Button {
 
 
     public void doSomething(Vector2 touch_position) {
-        System.out.println("doSomething" + isClicked(touch_position));
         if(isClicked(touch_position)){
             System.out.println("Start Button");
+        }
+    }
+    public void openNewState(StateManager state_manager,Vector2 touch_position){
+        if(isClicked(touch_position)){
+            state_manager.set(new PlayState(state_manager));
         }
     }
 

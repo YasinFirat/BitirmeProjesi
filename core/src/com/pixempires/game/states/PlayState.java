@@ -31,7 +31,7 @@ public class PlayState extends State {
                 .Split1D(45,37,46,39,9,180)
                 .circleTime(1f)
                 .setPosition(100,100);
-        camera.setToOrtho(false,PixEmpires.WIDTH/2,PixEmpires.HEIGHT/2);
+        camera.setToOrtho(false,PixEmpires.WIDTH,PixEmpires.HEIGHT);
 
     }
     public void create() {
@@ -46,7 +46,7 @@ public class PlayState extends State {
 
         sprite_batch.begin();
 
-        sprite_batch.draw(back_ground_reg,0,0,PixEmpires.WIDTH/2,PixEmpires.HEIGHT/2);
+        sprite_batch.draw(back_ground_reg,0,0,PixEmpires.WIDTH,PixEmpires.HEIGHT);
 
         sprite_batch.end();
 
@@ -57,6 +57,7 @@ public class PlayState extends State {
 
 
         gameWorld.update(delta);
+
     }
 
     protected void handleInput() {

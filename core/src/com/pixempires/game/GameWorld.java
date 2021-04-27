@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.pixempires.game.buttons.AttackButton;
 import com.pixempires.game.buttons.BackOffButton;
 import com.pixempires.game.buttons.Button;
+import com.pixempires.game.buttons.CreateCharacterButton;
 import com.pixempires.game.buttons.DefanceButton;
 import com.pixempires.game.gameobjects.GameObject;
 import com.pixempires.game.gameobjects.character.Statue;
@@ -17,74 +18,102 @@ import com.pixempires.game.gameobjects.character.archer.NormalArcher;
 import java.util.ArrayList;
 
 public  class GameWorld {
+    private Vector2 touch_position;
     private Texture texture;
+    //region Button values
     public Button btn_attack;
     public Button btn_defense;
     public Button btn_backOff;
+    public CreateCharacterButton<NormalArcher> normalArcherCreateCharacterButton;
+
+    //endregion
+
 
     public Statue statue_player;
+    public ListOfCharacters listOfCharacters;
 
-    public ArrayList<Archer> archer;
     float timer=1;
     boolean test=false;
 
 
 
     public GameWorld(){
-        texture=new Texture("btn_attack.png");
-        btn_attack=new AttackButton(new Vector2(PixEmpires.WIDTH/2-50,PixEmpires.HEIGHT/2-48),
-                new Vector2(16,16), new TextureRegion(texture));
 
-        texture=new Texture("btn_defense.png");
-        btn_defense=new DefanceButton(new Vector2(PixEmpires.WIDTH/2-66,PixEmpires.HEIGHT/2-32),
-                new Vector2(16,16), new TextureRegion(texture));
+        //region Castle,Defence,Attack Buttons
 
         texture=new Texture("btn_castle.png");
-        btn_backOff=new BackOffButton(new Vector2(PixEmpires.WIDTH/2-82,PixEmpires.HEIGHT/2-16),
-                new Vector2(16,16), new TextureRegion(texture));
+        btn_backOff=new BackOffButton(new Vector2(PixEmpires.WIDTH-128,PixEmpires.HEIGHT-48),
+                new Vector2(32,32), new TextureRegion(texture));
 
+        texture=new Texture("btn_defense.png");
+        btn_defense=new DefanceButton(new Vector2(PixEmpires.WIDTH-90,PixEmpires.HEIGHT-80),
+                new Vector2(32,32), new TextureRegion(texture));
+
+        texture=new Texture("btn_attack.png");
+        btn_attack=new AttackButton(new Vector2(PixEmpires.WIDTH-50,PixEmpires.HEIGHT-112),
+                new Vector2(32,32), new TextureRegion(texture));
+        //endregion
+
+        //region characterButtons
+        texture=new Texture("btn_castle.png");
+        normalArcherCreateCharacterButton=new CreateCharacterButton<NormalArcher>(new Vector2(PixEmpires.WIDTH-512,PixEmpires.HEIGHT-48),
+                new Vector2(32,32), new TextureRegion(texture));
+
+        //endregion
+
+        //region Test deneme amacli
         texture=new Texture("statue.png");
         statue_player=new Statue(texture);
         statue_player.setPosition(100,150);
         statue_player.setScale(25,50);
 
-        archer=new ArrayList<Archer>();
-        archer.add(new NormalArcher());
-        archer.add(new NormalArcher());
-        archer.add(new NormalArcher());
+
+       listOfCharacters=new ListOfCharacters();
+
+        //endregion
 
     }
     public void render(SpriteBatch sprite_batch){
 
-        for (int i=0; i<archer.size(); i++){
-            archer.get(i).render(sprite_batch);
-        }
+
+        //region ButtonRenders
         btn_attack.render(sprite_batch);
         btn_defense.render(sprite_batch);
         btn_backOff.render(sprite_batch);
+        //endregion
+        listOfCharacters.render(sprite_batch);
+        normalArcherCreateCharacterButton.render(sprite_batch);
         statue_player.render(sprite_batch);
     }
-    public void update(float delta){
-        timer+=delta;
+    public void handleInput() {
+        if(Gdx.input.justTouched()){
+            touch_position = new Vector2(Gdx.input.getX(), Gdx.input.getY());
+            //region ButtonHandles
+            btn_attack.doSomething(touch_position);
+            btn_defense.doSomething(touch_position);
+            btn_backOff.doSomething(touch_position);
+            //endregion
+            normalArcherCreateCharacterButton.AddChacter(listOfCharacters.normalArchers,new NormalArcher(),touch_position);
 
-        btn_attack.doSomething(new Vector2(Gdx.input.getX(),Gdx.input.getY()));
-        if(btn_attack.isClicked(new Vector2(Gdx.input.getX(),Gdx.input.getY()))){
-            System.out.println( "TikTik");
         }
+    }
+    public void update(float delta){
+        handleInput();
+        //region Her 5 saniyede bir herhangi bir karakterin sağlığı 100 duser
 
+        timer+=delta;
         if((int)timer%5==1){
             test=false;
         }
-        if((int)timer%5==0&&!test&&archer.size()>0){ //burada health test edildi.
+        if((int)timer%5==0&&!test&&listOfCharacters.normalArchers.size()>0){ //burada health test edildi.
             test=true;
-          archer.get(0).getHealth().subtractHealth(100);
+          listOfCharacters.normalArchers.get(0).getHealth().subtractHealth(100);
         }
+        //endregion
+        listOfCharacters.update(delta);
 
-        for (int i=0; i<archer.size(); i++){
-            archer.get(i).update(delta);
-            if(archer.get(i).getHealth().isHealthFinish()){
-                archer.remove(i);
-            }
-        }
+
+
+
     }
 }

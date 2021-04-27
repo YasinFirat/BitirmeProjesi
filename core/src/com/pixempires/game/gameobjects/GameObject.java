@@ -17,7 +17,9 @@ public abstract class GameObject extends Component{
     protected Vector2 scale;
 
     protected GameObject() {
-        System.out.println("GameObject");
+
+        position=new Vector2();
+        scale=new Vector2();
     }
     protected GameObject(Texture texture){
 
