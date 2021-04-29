@@ -10,6 +10,7 @@ import com.pixempires.game.buttons.BackOffButton;
 import com.pixempires.game.buttons.Button;
 import com.pixempires.game.buttons.CreateCharacterButton;
 import com.pixempires.game.buttons.DefanceButton;
+import com.pixempires.game.enums.Command;
 import com.pixempires.game.gameobjects.GameObject;
 import com.pixempires.game.gameobjects.character.Statue;
 import com.pixempires.game.gameobjects.character.archer.Archer;
@@ -18,6 +19,7 @@ import com.pixempires.game.gameobjects.character.archer.NormalArcher;
 import java.util.ArrayList;
 
 public  class GameWorld {
+    private Command command=Command.defance;
     private Vector2 touch_position;
     private Texture texture;
     //region Button values
@@ -28,14 +30,11 @@ public  class GameWorld {
 
     //endregion
 
-
     public Statue statue_player;
     public ListOfCharacters listOfCharacters;
 
     float timer=1;
     boolean test=false;
-
-
 
     public GameWorld(){
 
@@ -43,29 +42,30 @@ public  class GameWorld {
 
         texture=new Texture("btn_castle.png");
         btn_backOff=new BackOffButton(new Vector2(PixEmpires.WIDTH-128,PixEmpires.HEIGHT-48),
-                new Vector2(32,32), new TextureRegion(texture));
+                new Vector2(32,32), new TextureRegion(texture),this);
 
         texture=new Texture("btn_defense.png");
         btn_defense=new DefanceButton(new Vector2(PixEmpires.WIDTH-90,PixEmpires.HEIGHT-80),
-                new Vector2(32,32), new TextureRegion(texture));
+                new Vector2(32,32), new TextureRegion(texture),this);
 
         texture=new Texture("btn_attack.png");
         btn_attack=new AttackButton(new Vector2(PixEmpires.WIDTH-50,PixEmpires.HEIGHT-112),
-                new Vector2(32,32), new TextureRegion(texture));
+                new Vector2(32,32), new TextureRegion(texture),this);
         //endregion
 
-        //region characterButtons
+        //region Create Character Buttons
         texture=new Texture("btn_castle.png");
         normalArcherCreateCharacterButton=new CreateCharacterButton<NormalArcher>(new Vector2(PixEmpires.WIDTH-512,PixEmpires.HEIGHT-48),
                 new Vector2(32,32), new TextureRegion(texture));
 
         //endregion
 
+       // statue_player=new Statue(new Texture("statue.png"),100,500,32,64);
         //region Test deneme amacli
         texture=new Texture("statue.png");
         statue_player=new Statue(texture);
-        statue_player.setPosition(100,150);
-        statue_player.setScale(25,50);
+        statue_player.setPosition(150,350);
+        statue_player.setScale(64,96);
 
 
        listOfCharacters=new ListOfCharacters();
@@ -98,6 +98,7 @@ public  class GameWorld {
         }
     }
     public void update(float delta){
+
         handleInput();
         //region Her 5 saniyede bir herhangi bir karakterin sağlığı 100 duser
 
@@ -105,7 +106,7 @@ public  class GameWorld {
         if((int)timer%5==1){
             test=false;
         }
-        if((int)timer%5==0&&!test&&listOfCharacters.normalArchers.size()>0){ //burada health test edildi.
+        if((int)timer%5==0&&!test&&listOfCharacters.normalArchers.size()>0){ //burada health test edildi.her 5 saniyede bir bir elemanın healthi sifirlaniyor
             test=true;
           listOfCharacters.normalArchers.get(0).getHealth().subtractHealth(100);
         }
@@ -115,5 +116,10 @@ public  class GameWorld {
 
 
 
+    }
+
+    public GameWorld setCommand(Command command){
+        this.command=command;
+        return this;
     }
 }

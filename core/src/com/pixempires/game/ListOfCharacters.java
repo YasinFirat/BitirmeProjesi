@@ -21,7 +21,7 @@ public class ListOfCharacters {
         for (int i=0; i<normalArchers.size(); i++){
             normalArchers.get(i).update(delta);
 
-            normalArchers.get(i).setPosition(new Vector2((position_counter/max_alignment)*25+100,(position_counter%max_alignment)*25+250));
+            normalArchers.get(i).getAnimation().setPosition(new Vector2((position_counter/max_alignment)*30+200,(position_counter%max_alignment)*50+250));
 
             if(normalArchers.get(i).getHealth().isHealthFinish()){
                 normalArchers.remove(i); //health biten karakter yok olur.

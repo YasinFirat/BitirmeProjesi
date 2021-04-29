@@ -25,14 +25,14 @@ public abstract class GameObject extends Component{
 
         this.texture=texture;
         sprite=new TextureRegion(texture);
-        position=new Vector2(100,150);
+        position=new Vector2(100,100);
         scale=new Vector2(texture.getWidth(),texture.getHeight());
     }
 
     protected GameObject(Texture texture,int begin_x,int begin_y,int width,int heigth){
         this.texture=texture;
         sprite=new TextureRegion(texture,begin_x,begin_y,width,heigth);
-        position=new Vector2(100,150);
+        position=new Vector2(begin_x,begin_y);
         scale=new Vector2(width,heigth);
     }
 

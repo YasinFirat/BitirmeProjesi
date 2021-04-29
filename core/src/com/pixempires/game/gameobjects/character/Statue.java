@@ -19,10 +19,17 @@ public class Statue extends Character {
 
     public Statue(Texture texture, int begin_x, int begin_y, int width, int heigth) {
         super(texture, begin_x, begin_y, width, heigth);
+
+
+
     }
 
     @Override
     public void render(SpriteBatch sprite_batch) {
+        sprite_batch.begin();
+        sprite_batch.draw(getTextureRegion(),getPosition().x,getPosition().y,getScale().x,getScale().y);
+        sprite_batch.end();
+        System.out.println("pos"+getPosition());
 
     }
 
