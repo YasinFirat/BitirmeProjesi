@@ -60,7 +60,7 @@ public  class GameWorld {
 
         //endregion
 
-       // statue_player=new Statue(new Texture("statue.png"),100,500,32,64);
+
         //region Test deneme amacli
         texture=new Texture("statue.png");
         statue_player=new Statue(texture);

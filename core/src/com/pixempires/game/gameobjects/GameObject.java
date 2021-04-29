@@ -70,8 +70,19 @@ public abstract class GameObject extends Component{
      * @return
      */
     public GameObject move(Vector2 direction,float speed){
+        speed=speed/100;
+
+
         position.x+=direction.x*speed;
         position.y+=direction.y*speed;
+        return this;
+    }
+    public GameObject move(Vector2 position,Vector2 target,float speed,float distance){
+
+        if(Vector2.dst(position.x,position.y,target.x,target.y)<=distance){
+            return this;
+        }
+        move(new Vector2(target.x-position.x,target.y-position.y),speed);
         return this;
     }
 
