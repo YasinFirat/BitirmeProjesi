@@ -2,11 +2,12 @@ package com.pixempires.game.gameobjects.character;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.pixempires.game.other.CommandPositions;
 import com.pixempires.game.skills.Attack;
 
 public abstract class Soldier extends Character {
     private Attack attack;
-    private Vector2 defence_position;
+    private CommandPositions commandPositions;
 
     public Soldier(){
         super();
@@ -25,11 +26,13 @@ public abstract class Soldier extends Character {
         this.attack=attack;
         return this;
     }
-    public Soldier setDefancePosition(Vector2 defence_position){
-        this.defence_position=defence_position;
-        return this;
+
+    public CommandPositions getCommandPositions() {
+        return commandPositions;
     }
-    public Vector2 getDefencePosition(){
-        return defence_position;
+
+    public Soldier setCommandPositions(CommandPositions commandPositions) {
+        this.commandPositions = commandPositions;
+        return this;
     }
 }

@@ -11,15 +11,14 @@ import com.pixempires.game.buttons.Button;
 import com.pixempires.game.buttons.CreateCharacterButton;
 import com.pixempires.game.buttons.DefanceButton;
 import com.pixempires.game.enums.Command;
-import com.pixempires.game.gameobjects.GameObject;
 import com.pixempires.game.gameobjects.character.Statue;
-import com.pixempires.game.gameobjects.character.archer.Archer;
 import com.pixempires.game.gameobjects.character.archer.NormalArcher;
-
-import java.util.ArrayList;
+import com.pixempires.game.other.CommandPositions;
+import com.pixempires.game.other.ListOfCharacters;
 
 public  class GameWorld {
     private Command command=Command.defance;
+    private CommandPositions player_command_positions;
     private Vector2 touch_position;
     private Texture texture;
     //region Button values
@@ -31,12 +30,13 @@ public  class GameWorld {
     //endregion
 
     public Statue statue_player;
-    public ListOfCharacters listOfCharacters;
+    public com.pixempires.game.other.ListOfCharacters listOfCharacters;
 
     float timer=1;
     boolean test=false;
 
     public GameWorld(){
+        player_command_positions=new CommandPositions(new Vector2(800,350),new Vector2(-50,300));
 
         //region Castle,Defence,Attack Buttons
 
@@ -93,8 +93,12 @@ public  class GameWorld {
             btn_defense.doSomething(touch_position);
             btn_backOff.doSomething(touch_position);
             //endregion
-            normalArcherCreateCharacterButton.AddChacter(listOfCharacters.normalArchers,new NormalArcher(),touch_position);
+            //region Create Characters
 
+            normalArcherCreateCharacterButton.AddChacter(
+                    listOfCharacters.normalArchers,new NormalArcher(this),touch_position
+            );
+            //endregion
         }
     }
     public void update(float delta){
@@ -121,5 +125,11 @@ public  class GameWorld {
     public GameWorld setCommand(Command command){
         this.command=command;
         return this;
+    }
+    public Command getCommand(){
+        return command;
+    }
+    public  CommandPositions getPlayerCommandPositions(){
+        return player_command_positions;
     }
 }

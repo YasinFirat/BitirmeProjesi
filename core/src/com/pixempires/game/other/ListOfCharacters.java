@@ -1,4 +1,4 @@
-package com.pixempires.game;
+package com.pixempires.game.other;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -21,7 +21,7 @@ public class ListOfCharacters {
         for (int i=0; i<normalArchers.size(); i++){
             normalArchers.get(i).update(delta);
 
-            normalArchers.get(i).setDefancePosition(new Vector2((position_counter/max_alignment)*30+200,(position_counter%max_alignment)*50+250));
+            normalArchers.get(i).getCommandPositions().setDefance_position(new Vector2((position_counter/max_alignment)*30+200,(position_counter%max_alignment)*50+250));
 
             if(normalArchers.get(i).getHealth().isHealthFinish()){
                 normalArchers.remove(i); //health biten karakter yok olur.

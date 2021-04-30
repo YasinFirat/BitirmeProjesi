@@ -3,10 +3,21 @@ package com.pixempires.game.gameobjects.character.archer;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.pixempires.game.GameWorld;
 import com.pixempires.game.animations.Animation;
 import com.pixempires.game.gameobjects.GameObject;
+import com.pixempires.game.other.CommandPositions;
 
 public class NormalArcher extends Archer {
+    private GameWorld game_world;
+
+    public NormalArcher(GameWorld game_world){
+        this();
+        this.game_world=game_world;
+        setCommandPositions(game_world.getPlayerCommandPositions());
+        setPosition(getCommandPositions().getBackoff_position().x,getCommandPositions().getBackoff_position().y);
+
+    }
 
     public NormalArcher() {
         super();
@@ -18,8 +29,8 @@ public class NormalArcher extends Archer {
                 .circleTime(1f)
                 .setPosition(-(int)(Math.random()*10),(int)(Math.random()*100+200))
         );
-        setPosition(-(float) (Math.random()*10),(float) (Math.random()*200+200));
-        setDefancePosition(Vector2.Zero);
+
+
 
 
     }
@@ -35,7 +46,6 @@ public class NormalArcher extends Archer {
 
     @Override
     public void render(SpriteBatch sprite_batch) {
-
         getAnimation().render(sprite_batch);
 
     }
@@ -43,8 +53,20 @@ public class NormalArcher extends Archer {
     @Override
     public void update(float delta) {
         getAnimation().update(delta);
-        move(getAnimation().getPosition(),getDefencePosition(),1,1);
-        System.out.println("Norm "+ getPosition());
+        switch (game_world.getCommand()){
+            case attack:
+
+                move(getAnimation().getPosition(),getCommandPositions().getAttack_position(),1,1);
+                break;
+            case defance:
+                move(getAnimation().getPosition(),getCommandPositions().getDefance_position(),1,1);
+                break;
+            case backoff:
+                move(getAnimation().getPosition(),getCommandPositions().getBackoff_position(),1,1);
+                break;
+        }
+
+
         getAnimation().setPosition(getPosition());
 
     }
