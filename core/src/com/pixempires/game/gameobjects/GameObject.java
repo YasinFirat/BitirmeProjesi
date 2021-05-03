@@ -5,16 +5,18 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.pixempires.game.GameWorld;
 
 /**
  * Her bir nesne bir GameObject'tir.
  */
 public abstract class GameObject extends Component{
-
+    protected GameWorld game_world;
     protected Texture texture;
     protected TextureRegion sprite;
     protected Vector2 position;
     protected Vector2 scale;
+    protected float speed=1;
 
     protected GameObject() {
 
@@ -70,7 +72,10 @@ public abstract class GameObject extends Component{
      * @return
      */
     public GameObject move(Vector2 direction,float speed){
-        speed=speed/100;
+
+        direction.x=direction.x==0?0:direction.x>0?1:-1;
+        direction.y=direction.y==0?0:direction.y>0?1:-1;
+
 
 
         position.x+=direction.x*speed;
@@ -97,6 +102,12 @@ public abstract class GameObject extends Component{
         return sprite;
     }
 
+    public float getSpeed() {
+        return speed;
+    }
 
-
+    public GameObject setSpeed(float speed) {
+        this.speed = speed;
+        return this;
+    }
 }
