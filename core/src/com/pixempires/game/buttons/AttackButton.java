@@ -17,7 +17,7 @@ public class AttackButton extends CommandButtons {
     @Override
     public void doSomething(Vector2 touch_position) {
         if(isClicked(touch_position)){
-            getGameWorld().setCommand(Command.attack);
+            getGameWorld().setPlayerCommand(Command.attack);
         }
     }
 

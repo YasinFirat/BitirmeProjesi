@@ -11,13 +11,14 @@ import com.pixempires.game.buttons.Button;
 import com.pixempires.game.buttons.CreateCharacterButton;
 import com.pixempires.game.buttons.DefanceButton;
 import com.pixempires.game.enums.Command;
+import com.pixempires.game.gameobjects.character.Soldier;
 import com.pixempires.game.gameobjects.character.Statue;
 import com.pixempires.game.gameobjects.character.archer.NormalArcher;
 import com.pixempires.game.other.CommandPositions;
 import com.pixempires.game.other.ListOfCharacters;
 
 public  class GameWorld {
-    private Command command=Command.defance;
+    private Command player_command =Command.defance;
     private CommandPositions player_command_positions;
     private Vector2 touch_position;
     private Texture texture;
@@ -25,12 +26,12 @@ public  class GameWorld {
     public Button btn_attack;
     public Button btn_defense;
     public Button btn_backOff;
-    public CreateCharacterButton<NormalArcher> normalArcherCreateCharacterButton;
+    public CreateCharacterButton<Soldier> normalArcherCreateCharacterButton;
 
     //endregion
 
     public Statue statue_player;
-    public com.pixempires.game.other.ListOfCharacters listOfCharacters;
+    public ListOfCharacters playerCharacters;
 
     float timer=1;
     boolean test=false;
@@ -39,6 +40,7 @@ public  class GameWorld {
         player_command_positions=new CommandPositions(new Vector2(800,350),new Vector2(-50,300));
 
         //region Castle,Defence,Attack Buttons
+
 
         texture=new Texture("btn_castle.png");
         btn_backOff=new BackOffButton(new Vector2(PixEmpires.WIDTH-128,PixEmpires.HEIGHT-48),
@@ -55,7 +57,7 @@ public  class GameWorld {
 
         //region Create Character Buttons
         texture=new Texture("btn_castle.png");
-        normalArcherCreateCharacterButton=new CreateCharacterButton<NormalArcher>(new Vector2(PixEmpires.WIDTH-512,PixEmpires.HEIGHT-48),
+        normalArcherCreateCharacterButton=new CreateCharacterButton<Soldier>(new Vector2(PixEmpires.WIDTH-512,PixEmpires.HEIGHT-48),
                 new Vector2(32,32), new TextureRegion(texture));
 
         //endregion
@@ -68,7 +70,7 @@ public  class GameWorld {
         statue_player.setScale(64,96);
 
 
-       listOfCharacters=new ListOfCharacters();
+       playerCharacters =new ListOfCharacters(0);
 
         //endregion
 
@@ -81,7 +83,7 @@ public  class GameWorld {
         btn_defense.render(sprite_batch);
         btn_backOff.render(sprite_batch);
         //endregion
-        listOfCharacters.render(sprite_batch);
+        playerCharacters.render(sprite_batch);
         normalArcherCreateCharacterButton.render(sprite_batch);
         statue_player.render(sprite_batch);
     }
@@ -96,7 +98,7 @@ public  class GameWorld {
             //region Create Characters
 
             normalArcherCreateCharacterButton.AddChacter(
-                    listOfCharacters.normalArchers,new NormalArcher(this),touch_position
+                    playerCharacters.soldiers,new NormalArcher(this,player_command_positions).setCommandPositions(player_command_positions),touch_position
             );
             //endregion
         }
@@ -110,24 +112,24 @@ public  class GameWorld {
         if((int)timer%5==1){
             test=false;
         }
-        if((int)timer%5==0&&!test&&listOfCharacters.normalArchers.size()>0){ //burada health test edildi.her 5 saniyede bir bir elemanın healthi sifirlaniyor
+        if((int)timer%5==0&&!test&& playerCharacters.soldiers.size()>0){ //burada health test edildi.her 5 saniyede bir bir elemanın healthi sifirlaniyor
             test=true;
-          listOfCharacters.normalArchers.get(0).getHealth().subtractHealth(100);
+          playerCharacters.soldiers.get(0).getHealth().subtractHealth(100);
         }
         //endregion
-        listOfCharacters.update(delta);
+        playerCharacters.update(delta);
 
 
 
 
     }
 
-    public GameWorld setCommand(Command command){
-        this.command=command;
+    public GameWorld setPlayerCommand(Command player_command){
+        this.player_command = player_command;
         return this;
     }
-    public Command getCommand(){
-        return command;
+    public Command getPlayerCommand(){
+        return player_command;
     }
     public  CommandPositions getPlayerCommandPositions(){
         return player_command_positions;

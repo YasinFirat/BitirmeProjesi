@@ -28,9 +28,9 @@ public class CreateCharacterButton<T> extends Button {
 
     /**
      * Liste'ye ekleme islemini yapar.
-     * @param list
-     * @param member
-     * @param touch_position
+     * @param list islem yapilmasi istenen liste
+     * @param member listeye eklenecek nesne
+     * @param touch_position button click dokunulan bölgenin konumu
      */
     public void AddChacter(List<T> list,T member,Vector2 touch_position){
         if(isClicked(touch_position)){

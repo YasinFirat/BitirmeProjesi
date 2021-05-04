@@ -2,32 +2,23 @@ package com.pixempires.game.gameobjects.character.archer;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.pixempires.game.GameWorld;
 import com.pixempires.game.animations.Animation;
-import com.pixempires.game.gameobjects.GameObject;
 import com.pixempires.game.other.CommandPositions;
 
 public class NormalArcher extends Archer {
 
 
-    public NormalArcher(GameWorld game_world){
-        this();
-        this.game_world=game_world;
-        setCommandPositions(game_world.getPlayerCommandPositions());
-        setPosition(getCommandPositions().getBackoff_position().x,getCommandPositions().getBackoff_position().y);
-
-    }
-
     public NormalArcher() {
         super();
-        System.out.println("NormaArcher");
+    }
+    public NormalArcher(GameWorld game_world, CommandPositions command_positions){
+        super(game_world,command_positions);
         Texture archer_tex=new Texture("spr_ArcherAttack_strip_NoBkg.png");
 
         setAnimation(new Animation(archer_tex)
                 .Split1D(45,37,46,39,9,180)
                 .circleTime(1f)
-                .setPosition(-(int)(Math.random()*10),(int)(Math.random()*100+200))
         );
     }
 
@@ -47,7 +38,7 @@ public class NormalArcher extends Archer {
     @Override
     public void update(float delta) {
         getAnimation().update(delta);
-        switch (game_world.getCommand()){
+        switch (game_world.getPlayerCommand()){
             case attack:
                 move(getAnimation().getPosition(),getCommandPositions().getAttack_position(),getSpeed(),1);
                 break;

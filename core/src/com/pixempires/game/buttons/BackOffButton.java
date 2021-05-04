@@ -18,7 +18,7 @@ public class BackOffButton extends CommandButtons {
     public void doSomething(Vector2 touch_position) {
         if(isClicked(touch_position)){
             System.out.println("BackOff");
-            getGameWorld().setCommand(Command.backoff);
+            getGameWorld().setPlayerCommand(Command.backoff);
         }
     }
 

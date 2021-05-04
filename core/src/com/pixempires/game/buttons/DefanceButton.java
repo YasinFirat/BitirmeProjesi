@@ -18,7 +18,7 @@ public class DefanceButton extends CommandButtons {
     public void doSomething(Vector2 touch_position) {
         if(isClicked(touch_position)){
             System.out.println("Defance");
-            getGameWorld().setCommand(Command.defance);
+            getGameWorld().setPlayerCommand(Command.defance);
         }
     }
 

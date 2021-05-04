@@ -34,4 +34,9 @@ public abstract class Character extends GameObject {
         this.animation = animation;
         return this;
     }
+    public Character bouncing(Character character){
+
+        return this;
+
+    }
 }

@@ -2,29 +2,47 @@ package com.pixempires.game.other;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.pixempires.game.gameobjects.character.archer.NormalArcher;
+import com.pixempires.game.gameobjects.character.Soldier;
 
 import java.util.ArrayList;
 //Daha sonradan optimizasyon yapılacak.
 public class ListOfCharacters {
-
-    public ArrayList<NormalArcher> normalArchers=new ArrayList<>();
+    public CommandPositions command_position;
+    /**
+     * Tüm birliklerin listesi okçu,savaşçı,büyücü ...
+     */
+    public ArrayList<Soldier> soldiers =new ArrayList<>();
+    /**
+     * askerlerin sırasını hesaplar
+     */
     private int position_counter;
-    private int max_alignment=4;
+    /**
+     * Maximum Hizalama
+     */
+    private int max_alignment=1;
+
+    private ListOfCharacters(){}
+    public ListOfCharacters(int max_alignment) {
+        if(max_alignment>1){
+            this.max_alignment=max_alignment;
+
+        }
+
+    }
 
     public void render(SpriteBatch sprite_batch){
-        for (int i=0; i<normalArchers.size(); i++){
-            normalArchers.get(i).render(sprite_batch);
+        for (int i = 0; i< soldiers.size(); i++){
+            soldiers.get(i).render(sprite_batch);
         }
     }
     public void update(float delta){
-        for (int i=0; i<normalArchers.size(); i++){
-            normalArchers.get(i).update(delta);
+        for (int i = 0; i< soldiers.size(); i++){
+            soldiers.get(i).update(delta);
 
-            normalArchers.get(i).getCommandPositions().setDefance_position(new Vector2((position_counter/max_alignment)*30+200,(position_counter%max_alignment)*50+250));
+            soldiers.get(i).getCommandPositions().setDefance_position(new Vector2((position_counter/max_alignment)*30+200,(position_counter%max_alignment)*50+250));
 
-            if(normalArchers.get(i).getHealth().isHealthFinish()){
-                normalArchers.remove(i); //health biten karakter yok olur.
+            if(soldiers.get(i).getHealth().isHealthFinish()){
+                soldiers.remove(i); //health biten karakter yok olur.
             }
             position_counter++;
         }

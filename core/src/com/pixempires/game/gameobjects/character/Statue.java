@@ -7,7 +7,7 @@ import com.pixempires.game.gameobjects.character.Character;
 /**
  * Oyunda korunması gereken obje, eger bu obje kaybedilirse oyunda kaybedilir.(Simdilik heykel olarak gorev yapacak.)
  */
-public class Statue extends Character {
+public class Statue extends Soldier {
     public Statue() {
         System.out.println("Statue");
 

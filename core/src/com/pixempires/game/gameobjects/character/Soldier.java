@@ -2,16 +2,23 @@ package com.pixempires.game.gameobjects.character;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.pixempires.game.GameWorld;
 import com.pixempires.game.other.CommandPositions;
 import com.pixempires.game.skills.Attack;
 
 public abstract class Soldier extends Character {
-    private Attack attack;
-    private CommandPositions commandPositions;
+    protected GameWorld game_world;
+    protected Attack attack;
+    protected CommandPositions command_positions;
+    public Soldier(GameWorld game_world,CommandPositions command_positions){
+        
+        this.game_world=game_world;
+        this.command_positions=command_positions;
+        setPosition(getCommandPositions().getBackoff_position().x,getCommandPositions().getBackoff_position().y);
+    }
 
     public Soldier(){
         super();
-        System.out.println("Soldier ");
     }
     public Soldier(Texture texture){
         super(texture);
@@ -28,11 +35,11 @@ public abstract class Soldier extends Character {
     }
 
     public CommandPositions getCommandPositions() {
-        return commandPositions;
+        return command_positions;
     }
 
     public Soldier setCommandPositions(CommandPositions commandPositions) {
-        this.commandPositions = commandPositions;
+        this.command_positions = commandPositions;
         return this;
     }
 }
