@@ -2,7 +2,7 @@ package com.pixempires.game.skills;
 
 public class Health {
     private int health=100;
-    private int maxHealth=100;
+    private int max_health =100;
     private final int minHealth=0;
     /**
      * Saglik dusurulme islemi yapilir.
@@ -34,11 +34,16 @@ public class Health {
         return this;
     }
 
+    public Health setNewHealth(int health){
+        this.health=health;
+        return  this;
+    }
+
     /**
      * Saglik miktari ogrenme islemi yapilir.
      * @return
      */
-    int getHealth(){
+    public int getHealthValue(){
         return health;
     }
 
@@ -47,7 +52,7 @@ public class Health {
      * @return
      */
     public Health setMaxHealth(int maxHealth){
-        this.maxHealth=maxHealth;
+        this.max_health =maxHealth;
         return this;
     }
 
@@ -56,7 +61,7 @@ public class Health {
      * @return
      */
     public int getMaxHealth(){
-        return maxHealth;
+        return max_health;
     }
 
     /**

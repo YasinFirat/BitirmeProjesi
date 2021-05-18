@@ -4,6 +4,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.pixempires.game.GameWorld;
 
@@ -18,29 +20,33 @@ public abstract class GameObject extends Component{
     protected Vector2 scale;
     protected float speed=1;
 
-    protected GameObject() {
 
+    public GameObject() {
         position=new Vector2();
         scale=new Vector2();
+
     }
-    protected GameObject(Texture texture){
+    public GameObject(Texture texture){
 
         this.texture=texture;
         sprite=new TextureRegion(texture);
         position=new Vector2(100,100);
         scale=new Vector2(texture.getWidth(),texture.getHeight());
+
     }
 
-    protected GameObject(Texture texture,int begin_x,int begin_y,int width,int heigth){
-        this.texture=texture;
+    public GameObject(Texture texture,int begin_x,int begin_y,int width,int heigth){
+        this(texture);
+
         sprite=new TextureRegion(texture,begin_x,begin_y,width,heigth);
         position=new Vector2(begin_x,begin_y);
         scale=new Vector2(width,heigth);
+
     }
 
     public Vector2 getScale() {
         return scale;
-    }
+    }//
     public GameObject setScale(Vector2 scale) {
         this.scale = scale;
         return this;
@@ -52,7 +58,7 @@ public abstract class GameObject extends Component{
     }
     public Vector2 getPosition() {
         return position;
-    }
+    }//
     public GameObject setPosition(Vector2 position) {
         this.position.x=position.x-scale.x/2;
         this.position.y=position.y-scale.y/2;
@@ -98,13 +104,17 @@ public abstract class GameObject extends Component{
      */
     public abstract void update(float delta);
     public abstract void dispose();
-    public TextureRegion getTextureRegion(){
+    public TextureRegion getSprite(){
         return sprite;
+    } //
+    protected GameObject setSprite(Texture texture){
+        sprite=new TextureRegion(texture);
+        return this;
     }
 
     public float getSpeed() {
         return speed;
-    }
+    } //
 
     public GameObject setSpeed(float speed) {
         this.speed = speed;

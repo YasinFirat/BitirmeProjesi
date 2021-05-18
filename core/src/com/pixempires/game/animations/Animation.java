@@ -21,11 +21,11 @@ public class Animation {
     /**
      * Toplam frame sayisi
      */
-    private int frameCount;
+    private int frame_count;
     /**
      * frame bitim suresi
      */
-    private float maxFrameTime;
+    private float max_frame_time;
     /**
      * Aktif olarak frame suresini gosterir.
      */
@@ -53,18 +53,18 @@ public class Animation {
     }
     public void render(SpriteBatch sprite_batch){
         sprite_batch.begin();
-        sprite_batch.draw(sprite[frame],getPosition().x,getPosition().y);
+        sprite_batch.draw(sprite[frame],getPosition().x,getPosition().y,scale.x,scale.y);
         sprite_batch.end();
     }
     public void update(float delta){
         currentFrameTime+=delta;
-        if(currentFrameTime > maxFrameTime){
+        if(currentFrameTime > max_frame_time){
             frame++;
             currentFrameTime = 0;
         }
 
 
-        if(frame >= frameCount){
+        if(frame >= frame_count){
            //son sprite çalışır.
             System.out.println(frame);
             isLastFrame=true;
@@ -86,11 +86,11 @@ public class Animation {
      *                      Eger fazladan bosluk yoksa 0 degerini atayınız,fazladan bosluk varsa degerini giriniz.
      * @return
      */
-    public Animation Split1D(int begin_x, int begin_y, int width, int height, int frameCount, int space_x_frame){
-        this.frameCount=frameCount;
+    public Animation split1D(int begin_x, int begin_y, int width, int height, int frameCount, int space_x_frame){
+        this.frame_count =frameCount;
         sprite=new TextureRegion[frameCount]; //sprite boyutu girilir.
         int keep_begin_x=begin_x; //baslangic noktasi tutulur.
-        maxFrameTime=.5f/frameCount;
+        max_frame_time =.5f/frameCount;
         for (int i=0; i<frameCount;i++){
             sprite[i]=new TextureRegion(texture_of_sprite,begin_x,begin_y,width,height);
             if(space_x_frame==0){
@@ -107,10 +107,10 @@ public class Animation {
      * @param sprite
      * @return
      */
-    public Animation Split1DManual(TextureRegion[] sprite){
+    public Animation split1DManual(TextureRegion[] sprite){
         this.sprite=sprite;
-        frameCount=sprite.length;
-        maxFrameTime=.5f/frameCount;
+        frame_count =sprite.length;
+        max_frame_time =.5f/ frame_count;
         return  this;
     }
 
@@ -125,13 +125,14 @@ public class Animation {
      * @param frameCount_y y ekseninde goruntusu sayısı
      * @return
      */
-    public Animation Split2D(int begin_x, int begin_y, int width, int height, int frameCount_x, int frameCount_y){
-        this.frameCount=frameCount_x+frameCount_y;
-        sprite=new TextureRegion[frameCount];
-        maxFrameTime=.5f/frameCount;
+    public Animation split2D(int begin_x, int begin_y, int width, int height, int frameCount_x, int frameCount_y){
+        this.frame_count =frameCount_x+frameCount_y;
+        sprite=new TextureRegion[frame_count];
+        scale.set(width,height);
+        max_frame_time =.5f/ frame_count;
         int counter_frameCount_x=0;
         int counter_frameCount_y=0;
-        for (int i=0; i<frameCount;i++){
+        for (int i = 0; i< frame_count; i++){
             sprite[i]=new TextureRegion(texture_of_sprite,begin_x,begin_y,width,height);
             if(frameCount_x>counter_frameCount_x){
                 begin_x+=width;
@@ -155,9 +156,9 @@ public class Animation {
      * @return
      */
     public Animation circleTime(float circle_time){
-        if (frameCount==0)
+        if (frame_count ==0)
             return this;
-        maxFrameTime=circle_time/frameCount;
+        max_frame_time =circle_time/ frame_count;
         return this;
     }
 
@@ -168,7 +169,7 @@ public class Animation {
     public TextureRegion getFrame(){
         return sprite[frame];
     }
-    public boolean GetIsLastFrame() {
+    public boolean getIsLastFrame() {
         return isLastFrame;
     }
     public Vector2 getPosition(){
@@ -188,11 +189,14 @@ public class Animation {
     }
     public Animation setScale(Vector2 position){
         this.scale=position;
+
         return this;
     }
     public Animation setScale(int x,int y){
         this.scale.x=x;
         this.scale.y=y;
+
+
         return this;
     }
 }

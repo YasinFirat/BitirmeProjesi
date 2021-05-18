@@ -1,3 +1,4 @@
+
 package com.pixempires.game.gameobjects.character.archer;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -14,7 +15,6 @@ public abstract class Archer extends Soldier {
     public Archer(){
         super();
         System.out.println("Archer");
-
     }
     public Archer(Texture texture){
         super(texture);
@@ -23,10 +23,4 @@ public abstract class Archer extends Soldier {
     public Archer(Texture texture, int begin_x, int begin_y, int width, int heigth) {
         super(texture, begin_x, begin_y, width, heigth);
     }
-
-
-
-
-
-
 }

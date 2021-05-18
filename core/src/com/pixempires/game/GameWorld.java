@@ -16,10 +16,12 @@ import com.pixempires.game.gameobjects.character.Statue;
 import com.pixempires.game.gameobjects.character.archer.NormalArcher;
 import com.pixempires.game.other.CommandPositions;
 import com.pixempires.game.other.ListOfCharacters;
+import com.pixempires.game.other.Military;
 
 public  class GameWorld {
-    private Command player_command =Command.defance;
-    private CommandPositions player_command_positions;
+    public Military player;
+    public Military artificial_intelligence;
+
     private Vector2 touch_position;
     private Texture texture;
     //region Button values
@@ -31,13 +33,25 @@ public  class GameWorld {
     //endregion
 
     public Statue statue_player;
-    public ListOfCharacters playerCharacters;
+
+
 
     float timer=1;
     boolean test=false;
 
     public GameWorld(){
-        player_command_positions=new CommandPositions(new Vector2(800,350),new Vector2(-50,300));
+        //region Military
+         player=new Military();
+         player.setCommandPositions(
+                new CommandPositions(new Vector2(800,350),new Vector2(150,350)))
+                .setCharacters(new ListOfCharacters(4,player.getCommandPositions()));
+         //AI eklendi.
+         artificial_intelligence=new Military();
+         artificial_intelligence.setCommandPositions(
+                 new CommandPositions(new Vector2(150,350),new Vector2(800,350)))
+                 .setCharacters(new ListOfCharacters(4,artificial_intelligence.getCommandPositions()));
+
+         //endregion
 
         //region Castle,Defence,Attack Buttons
 
@@ -62,30 +76,24 @@ public  class GameWorld {
 
         //endregion
 
-
-        //region Test deneme amacli
-        texture=new Texture("statue.png");
-        statue_player=new Statue(texture);
-        statue_player.setPosition(150,350);
-        statue_player.setScale(64,96);
-
-
-       playerCharacters =new ListOfCharacters(0);
-
-        //endregion
-
     }
     public void render(SpriteBatch sprite_batch){
-
 
         //region ButtonRenders
         btn_attack.render(sprite_batch);
         btn_defense.render(sprite_batch);
         btn_backOff.render(sprite_batch);
         //endregion
-        playerCharacters.render(sprite_batch);
+
+        //region CreateButtons
         normalArcherCreateCharacterButton.render(sprite_batch);
-        statue_player.render(sprite_batch);
+        //endregion
+
+        //region Military
+        player.getCharacters().render(sprite_batch);
+        artificial_intelligence.getCharacters().render(sprite_batch);
+        //endregion
+
     }
     public void handleInput() {
         if(Gdx.input.justTouched()){
@@ -98,40 +106,28 @@ public  class GameWorld {
             //region Create Characters
 
             normalArcherCreateCharacterButton.AddChacter(
-                    playerCharacters.soldiers,new NormalArcher(this,player_command_positions).setCommandPositions(player_command_positions),touch_position
+                    player.getCharacters().soldiers,new NormalArcher(this,player.getCommandPositions()),touch_position
             );
             //endregion
         }
     }
     public void update(float delta){
-
         handleInput();
-        //region Her 5 saniyede bir herhangi bir karakterin sağlığı 100 duser
 
-        timer+=delta;
-        if((int)timer%5==1){
-            test=false;
-        }
-        if((int)timer%5==0&&!test&& playerCharacters.soldiers.size()>0){ //burada health test edildi.her 5 saniyede bir bir elemanın healthi sifirlaniyor
-            test=true;
-          playerCharacters.soldiers.get(0).getHealth().subtractHealth(100);
-        }
+        //region Military
+        player.getCharacters().update(delta);
+        artificial_intelligence.getCharacters().update(delta);
         //endregion
-        playerCharacters.update(delta);
-
-
-
-
     }
 
     public GameWorld setPlayerCommand(Command player_command){
-        this.player_command = player_command;
+        player.setCommand(player_command);
         return this;
     }
     public Command getPlayerCommand(){
-        return player_command;
+        return player.getCommand();
     }
     public  CommandPositions getPlayerCommandPositions(){
-        return player_command_positions;
+        return player.getCommandPositions();
     }
 }

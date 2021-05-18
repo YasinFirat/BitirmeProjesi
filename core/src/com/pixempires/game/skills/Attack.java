@@ -40,7 +40,7 @@ public class Attack {
     public int getAttackSpeed(){
         return attack_speed;
     }
-    public int getAttack_distance() {
+    public int getAttackDistance() {
         return attack_distance;
     }
 
