@@ -43,13 +43,13 @@ public  class GameWorld {
         //region Military
          player=new Military();
          player.setCommandPositions(
-                new CommandPositions(new Vector2(800,350),new Vector2(150,350)))
-                .setCharacters(new ListOfCharacters(4,player.getCommandPositions()));
+                new CommandPositions(new Vector2(1150,350),new Vector2(50,350)))
+                .setCharacters(new ListOfCharacters(5,player.getCommandPositions(),false));
          //AI eklendi.
          artificial_intelligence=new Military();
          artificial_intelligence.setCommandPositions(
-                 new CommandPositions(new Vector2(150,350),new Vector2(800,350)))
-                 .setCharacters(new ListOfCharacters(4,artificial_intelligence.getCommandPositions()));
+                 new CommandPositions(new Vector2(150,350),new Vector2(1150,350)))
+                 .setCharacters(new ListOfCharacters(4,artificial_intelligence.getCommandPositions(),true));
 
          //endregion
 
@@ -106,7 +106,7 @@ public  class GameWorld {
             //region Create Characters
 
             normalArcherCreateCharacterButton.AddChacter(
-                    player.getCharacters().soldiers,new NormalArcher(this,player.getCommandPositions()),touch_position
+                    player .getCharacters().soldiers,new NormalArcher(this,player.getCommandPositions(),player.getFlibX()),touch_position
             );
             //endregion
         }

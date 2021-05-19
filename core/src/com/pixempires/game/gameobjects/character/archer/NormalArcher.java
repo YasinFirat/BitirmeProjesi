@@ -9,19 +9,16 @@ import com.pixempires.game.animations.Animation;
 import com.pixempires.game.other.CommandPositions;
 
 public class NormalArcher extends Archer {
-
-
-
     public NormalArcher() {
         super();
 
     }
-    public NormalArcher(GameWorld game_world, CommandPositions command_positions){
+    public NormalArcher(GameWorld game_world, CommandPositions command_positions,boolean flibX){
         super(game_world,command_positions);
         Texture archer_tex=new Texture("spr_ArcherAttack_strip_NoBkg.png");
 
         setAnimation(new Animation(archer_tex)
-                .split1D(45,37,46,39,9,180)
+                .split1D(45,37,46,39,9,180,flibX)
                 .circleTime(1f)
         );
 
@@ -43,13 +40,14 @@ public class NormalArcher extends Archer {
     @Override
     public void render(SpriteBatch sprite_batch) {
         getAnimation().render(sprite_batch);
-        ShapeRenderer shapeRenderer=new ShapeRenderer();
+        /*ShapeRenderer shapeRenderer=new ShapeRenderer();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.setColor(1,0,0,1);
-        shapeRenderer.line(position,new Vector2(position.x+getAttack().getAttackDistance(),position.y));
+        shapeRenderer.line(getPosition(),new Vector2(getPosition().x+getAttack().getAttackDistance(),getPosition().y));
         shapeRenderer.setColor(0,1,0,1);
-        shapeRenderer.circle(position.x,position.y,getAttack().getAttackDistance());
-        shapeRenderer.end();
+        shapeRenderer.circle(getPosition().x,getPosition().y,getAttack().getAttackDistance());
+
+        shapeRenderer.end();*/
     }
     @Override
     public void update(float delta) {

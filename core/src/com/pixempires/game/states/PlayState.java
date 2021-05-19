@@ -27,10 +27,7 @@ public class PlayState extends State {
 
         Texture archer_tex=new Texture("spr_ArcherAttack_strip_NoBkg.png");
         back_ground_reg=new TextureRegion(back_ground);
-        archer_animation =new Animation(archer_tex)
-                .split1D(45,37,46,39,9,180)
-                .circleTime(1f)
-                .setPosition(100,100);
+
         camera.setToOrtho(false,PixEmpires.WIDTH,PixEmpires.HEIGHT);
 
     }

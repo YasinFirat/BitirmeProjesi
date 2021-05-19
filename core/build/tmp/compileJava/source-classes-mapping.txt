@@ -1,5 +1,5 @@
-com/pixempires/game/gameobjects/character/Worker.java
- com.pixempires.game.gameobjects.character.Worker
+com/pixempires/game/skills/Attack.java
+ com.pixempires.game.skills.Attack
 com/pixempires/game/buttons/CreateCharacterButton.java
  com.pixempires.game.buttons.CreateCharacterButton
 com/pixempires/game/buttons/Button.java
@@ -8,13 +8,12 @@ com/pixempires/game/gameobjects/Component.java
  com.pixempires.game.gameobjects.Component
 com/pixempires/game/skills/Health.java
  com.pixempires.game.skills.Health
-com/pixempires/game/buttons/BackOffButton.java
- com.pixempires.game.buttons.BackOffButton
-com/pixempires/game/gameobjects/character/archer/NormalArcher.java
- com.pixempires.game.gameobjects.character.archer.NormalArcher
- com.pixempires.game.gameobjects.character.archer.NormalArcher$1
-com/pixempires/game/gameobjects/character/Character.java
- com.pixempires.game.gameobjects.character.Character
+com/pixempires/game/animations/Animation.java
+ com.pixempires.game.animations.Animation
+com/pixempires/game/buttons/StartButton.java
+ com.pixempires.game.buttons.StartButton
+com/pixempires/game/other/CommandPositions.java
+ com.pixempires.game.other.CommandPositions
 com/pixempires/game/enums/Command.java
  com.pixempires.game.enums.Command
 com/pixempires/game/other/Dedector.java
@@ -23,38 +22,39 @@ com/pixempires/game/states/MenuState.java
  com.pixempires.game.states.MenuState
 com/pixempires/game/states/StateManager.java
  com.pixempires.game.states.StateManager
-com/pixempires/game/states/PlayState.java
- com.pixempires.game.states.PlayState
-com/pixempires/game/collision/Trigger.java
- com.pixempires.game.collision.Trigger
-com/pixempires/game/buttons/AttackButton.java
- com.pixempires.game.buttons.AttackButton
-com/pixempires/game/skills/Attack.java
- com.pixempires.game.skills.Attack
-com/pixempires/game/buttons/CommandButtons.java
- com.pixempires.game.buttons.CommandButtons
-com/pixempires/game/PixEmpires.java
- com.pixempires.game.PixEmpires
-com/pixempires/game/states/State.java
- com.pixempires.game.states.State
 com/pixempires/game/states/LevelState.java
  com.pixempires.game.states.LevelState
+com/pixempires/game/states/State.java
+ com.pixempires.game.states.State
+com/pixempires/game/PixEmpires.java
+ com.pixempires.game.PixEmpires
+com/pixempires/game/gameobjects/character/Worker.java
+ com.pixempires.game.gameobjects.character.Worker
+com/pixempires/game/buttons/CommandButtons.java
+ com.pixempires.game.buttons.CommandButtons
 com/pixempires/game/gameobjects/character/Soldier.java
  com.pixempires.game.gameobjects.character.Soldier
 com/pixempires/game/gameobjects/GameObject.java
  com.pixempires.game.gameobjects.GameObject
-com/pixempires/game/animations/Animation.java
- com.pixempires.game.animations.Animation
-com/pixempires/game/buttons/StartButton.java
- com.pixempires.game.buttons.StartButton
+com/pixempires/game/buttons/BackOffButton.java
+ com.pixempires.game.buttons.BackOffButton
+com/pixempires/game/gameobjects/character/archer/NormalArcher.java
+ com.pixempires.game.gameobjects.character.archer.NormalArcher
+ com.pixempires.game.gameobjects.character.archer.NormalArcher$1
 com/pixempires/game/gameobjects/character/archer/Archer.java
  com.pixempires.game.gameobjects.character.archer.Archer
 com/pixempires/game/gameobjects/character/Statue.java
  com.pixempires.game.gameobjects.character.Statue
 com/pixempires/game/buttons/DefanceButton.java
  com.pixempires.game.buttons.DefanceButton
-com/pixempires/game/other/CommandPositions.java
- com.pixempires.game.other.CommandPositions
+com/pixempires/game/gameobjects/character/Character.java
+ com.pixempires.game.gameobjects.character.Character
+com/pixempires/game/buttons/AttackButton.java
+ com.pixempires.game.buttons.AttackButton
+com/pixempires/game/states/PlayState.java
+ com.pixempires.game.states.PlayState
+com/pixempires/game/collision/Trigger.java
+ com.pixempires.game.collision.Trigger
 com/pixempires/game/GameWorld.java
  com.pixempires.game.GameWorld
 com/pixempires/game/other/ListOfCharacters.java

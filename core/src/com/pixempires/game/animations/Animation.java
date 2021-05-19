@@ -86,13 +86,15 @@ public class Animation {
      *                      Eger fazladan bosluk yoksa 0 degerini atayınız,fazladan bosluk varsa degerini giriniz.
      * @return
      */
-    public Animation split1D(int begin_x, int begin_y, int width, int height, int frameCount, int space_x_frame){
+    public Animation split1D(int begin_x, int begin_y, int width, int height, int frameCount, int space_x_frame,boolean flibX){
         this.frame_count =frameCount;
         sprite=new TextureRegion[frameCount]; //sprite boyutu girilir.
         int keep_begin_x=begin_x; //baslangic noktasi tutulur.
         max_frame_time =.5f/frameCount;
         for (int i=0; i<frameCount;i++){
             sprite[i]=new TextureRegion(texture_of_sprite,begin_x,begin_y,width,height);
+            sprite[i].flip(flibX,false);
+
             if(space_x_frame==0){
                 begin_x+=width; //eger arada bosluk yoksa yeni frame icin genislik baz alinir.
             }else{

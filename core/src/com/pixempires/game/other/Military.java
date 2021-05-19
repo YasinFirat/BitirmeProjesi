@@ -33,4 +33,7 @@ public class Military {
         this.command_positions = command_positions;
         return this;
     }
+    public boolean getFlibX(){
+        return getCharacters().getFlibX();
+    }
 }
