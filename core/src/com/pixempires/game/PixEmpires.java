@@ -5,8 +5,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.pixempires.game.assetManagers.Assets;
 import com.pixempires.game.states.MenuState;
 import com.pixempires.game.states.StateManager;
+
+import javax.swing.JProgressBar;
 
 public class PixEmpires extends ApplicationAdapter {
 	public static final int WIDTH = 1280;
@@ -19,6 +22,12 @@ public class PixEmpires extends ApplicationAdapter {
 	public void create () {
 		state_manager=new StateManager();
 		sprite_batch=new SpriteBatch();
+		Assets assets=new Assets();
+		assets.load();
+		while (!assets.manager.update()){
+			System.out.println(assets.manager.getProgress()*100 +" % Loading");
+
+		}
 		state_manager.push(new MenuState(state_manager));
 	}
 

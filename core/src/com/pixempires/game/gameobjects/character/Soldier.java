@@ -1,13 +1,16 @@
 package com.pixempires.game.gameobjects.character;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Pool;
 import com.pixempires.game.GameWorld;
 import com.pixempires.game.gameobjects.GameObject;
 import com.pixempires.game.other.CommandPositions;
 import com.pixempires.game.skills.Attack;
 
 public abstract class Soldier extends Character {
+
 
     protected Attack attack= new Attack();
     protected CommandPositions command_positions;
@@ -70,7 +73,6 @@ public abstract class Soldier extends Character {
             soldier.getHealth().subtractHealth(getAttack().getDamage());
         }
         return this;
-
     }
 
 
