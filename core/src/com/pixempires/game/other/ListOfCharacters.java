@@ -10,7 +10,7 @@ import java.util.ArrayList;
 //Daha sonradan optimizasyon yapılacak.
 public class ListOfCharacters {
     public CommandPositions command_position;
-    private boolean flipX;
+    private boolean isLookRight;
     private int direction;
     /**
      * Tüm birliklerin listesi okçu,savaşçı,büyücü ...
@@ -33,11 +33,11 @@ public class ListOfCharacters {
      * Birliklerin kime ait olduğunu belirler.
      * @param max_alignment  sıralama olcüsü
      * @param command_position emir verildiginde alacaklari pozisyonlar
-     * @param flipX   karakterin bakacagi yon ; true : sola bakar, false : saga bakar
+     * @param isLookRight   karakterin bakacagi yon ; true : sola bakar, false : saga bakar
      */
-    public ListOfCharacters(int max_alignment,CommandPositions command_position,boolean flipX) {
-        this.flipX=flipX;
-        if(flipX){
+    public ListOfCharacters(int max_alignment,CommandPositions command_position,boolean isLookRight) {
+        this.isLookRight = isLookRight;
+        if(this.isLookRight){
             direction=-1;
         }else{
             direction=1;
@@ -47,14 +47,17 @@ public class ListOfCharacters {
             this.max_alignment=max_alignment;
         }
         statue=new Statue();
-        statue.getSprite().flip(flipX,false);
+        statue.getSprite().flip(this.isLookRight,false);
         statue.setCommandPositions(command_position);
+        statue.getAttack().setDamage(0);
+
+
 
         soldiers.add(statue);
     }
 
     public void render(SpriteBatch sprite_batch){
-        for (int i = 0; i< soldiers.size(); i++){
+        for (int i = soldiers.size()-1; 0<=i; i--){
             soldiers.get(i).render(sprite_batch);
         }
     }
@@ -65,6 +68,7 @@ public class ListOfCharacters {
                     command_position.getBackoff_position().x+direction*((position_counter/max_alignment)*30+100),
                     command_position.getBackoff_position().y+(position_counter%max_alignment)*40-100));
 
+
             if(soldiers.get(i).getHealth().isHealthFinish()){
                 soldiers.remove(i); //health biten karakter yok olur.
             }
@@ -73,7 +77,8 @@ public class ListOfCharacters {
         position_counter=0;
     }
 
-    public boolean getFlibX(){
-        return flipX;
+    public boolean getIsLookRight(){
+        return isLookRight;
     }
+
 }

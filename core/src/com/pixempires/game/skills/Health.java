@@ -11,10 +11,9 @@ public class Health {
      */
     public Health subtractHealth(int damage){
         health-=damage;
-        System.out.println("Saglik azaldi");
+
         if (health<=minHealth){
             health=minHealth;
-            System.out.println("Saglik bitti");
         }
         return this;
     }

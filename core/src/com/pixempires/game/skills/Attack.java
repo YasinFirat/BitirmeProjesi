@@ -1,9 +1,11 @@
 package com.pixempires.game.skills;
 
 public class Attack {
+
     private int damage=10;
     private int attack_speed=1;
-    private int attack_distance=1;
+    private int attack_distance=200;
+    public boolean is_attacking;
 
     /**
      * Saldiri hasarini olusturur.
@@ -48,5 +50,13 @@ public class Attack {
         this.attack_distance = attack_distance;
         return this;
     }
+    public Attack setIsAttacking(boolean isAttacking){
+        this.is_attacking=isAttacking;
+        return this;
+    }
+    public boolean getIsAttacking(){
+        return is_attacking;
+    }
 
 }
+

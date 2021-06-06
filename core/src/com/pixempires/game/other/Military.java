@@ -34,6 +34,7 @@ public class Military {
         return this;
     }
     public boolean getFlibX(){
-        return getCharacters().getFlibX();
+        return getCharacters().getIsLookRight();
     }
+
 }

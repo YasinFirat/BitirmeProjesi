@@ -13,7 +13,7 @@ import java.awt.Rectangle;
 public abstract class Character extends GameObject {
 
     private Health health=new Health();
-    private Animation animation;
+    private Animation animation=new Animation();
 
 
     public Character(){

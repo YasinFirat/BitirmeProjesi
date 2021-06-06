@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.pixempires.game.GameWorld;
-import com.pixempires.game.animations.Animation;
+import com.pixempires.game.assetManagers.Assets;
 import com.pixempires.game.other.CommandPositions;
 
 public class NormalArcher extends Archer {
@@ -13,16 +13,11 @@ public class NormalArcher extends Archer {
         super();
 
     }
-    public NormalArcher(GameWorld game_world, CommandPositions command_positions,boolean flibX){
-        super(game_world,command_positions);
-        Texture archer_tex=new Texture("spr_ArcherAttack_strip_NoBkg.png");
+    public NormalArcher(GameWorld game_world, CommandPositions command_positions,boolean isLookRight){
+        super(game_world,command_positions,isLookRight);
 
-        setAnimation(new Animation(archer_tex)
-                .split1D(45,37,46,39,9,180,flibX)
-                .circleTime(1f)
-        );
 
-        setScale(50,50);
+        setScale(100,100);
         getAttack().setAttackDistance(50);
         getAttack().setDamage(1);
     }
@@ -49,24 +44,64 @@ public class NormalArcher extends Archer {
 
         shapeRenderer.end();*/
     }
+
     @Override
     public void update(float delta) {
-        getAnimation().update(delta);
-        switch (game_world.getPlayerCommand()){
-            case attack:
-                move(getAnimation().getPosition(),getCommandPositions().getAttack_position(),getSpeed(),1);
-                break;
-            case defance:
-                move(getAnimation().getPosition(),getCommandPositions().getDefance_position(),getSpeed(),1);
-                break;
-            case backoff:
-                move(getAnimation().getPosition(),getCommandPositions().getBackoff_position(),getSpeed(),1);
-                break;
-        }
-        getAnimation().setPosition(getPosition());
+        super.update(delta);
     }
+
     @Override
     public void dispose() {
 
     }
+    @Override
+    public void attackRightAnimation() {
+        getAnimation().setSprite(Assets.sprite_warrior_attack_right);
+    }
+
+    @Override
+    public void runRightAnimation() {
+        getAnimation().setSprite(Assets.sprite_warrior_run_right);
+    }
+
+    @Override
+    public void idleRightAnimation() {
+        getAnimation().setSprite(Assets.sprite_warrior_idle_right);
+    }
+
+    @Override
+    public void dieRightAnimation() {
+        getAnimation().setSprite(Assets.sprite_warrior_die_right);
+    }
+
+    @Override
+    public void hurtRightAnimation() {
+
+    }
+
+    @Override
+    public void attackLeftAnimation() {
+        getAnimation().setSprite(Assets.sprite_warrior_attack_left);
+    }
+
+    @Override
+    public void runLeftAnimation() {
+        getAnimation().setSprite(Assets.sprite_warrior_run_left);
+    }
+
+    @Override
+    public void idleLeftAnimation() {
+        getAnimation().setSprite(Assets.sprite_warrior_idle_left);
+    }
+
+    @Override
+    public void dieLeftAnimation() {
+        getAnimation().setSprite(Assets.sprite_warrior_die_left);
+    }
+
+    @Override
+    public void hurtLeftAnimation() {
+
+    }
+
 }

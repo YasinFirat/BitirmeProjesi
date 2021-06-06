@@ -10,6 +10,7 @@ import com.pixempires.game.buttons.BackOffButton;
 import com.pixempires.game.buttons.Button;
 import com.pixempires.game.buttons.CreateCharacterButton;
 import com.pixempires.game.buttons.DefanceButton;
+import com.pixempires.game.collision.Trigger;
 import com.pixempires.game.enums.Command;
 import com.pixempires.game.gameobjects.character.Soldier;
 import com.pixempires.game.gameobjects.character.Statue;
@@ -29,7 +30,9 @@ public  class GameWorld {
     public Button btn_defense;
     public Button btn_backOff;
     public CreateCharacterButton<Soldier> normalArcherCreateCharacterButton;
+    public CreateCharacterButton<Soldier> aIArcherCreateCharacterButton;
 
+    public Trigger trigger=new Trigger();
     //endregion
 
     public Statue statue_player;
@@ -43,7 +46,7 @@ public  class GameWorld {
         //region Military
          player=new Military();
          player.setCommandPositions(
-                new CommandPositions(new Vector2(1150,350),new Vector2(50,350)))
+                new CommandPositions(new Vector2(1150,350),new Vector2(150,350)))
                 .setCharacters(new ListOfCharacters(5,player.getCommandPositions(),false));
          //AI eklendi.
          artificial_intelligence=new Military();
@@ -67,11 +70,16 @@ public  class GameWorld {
         texture=new Texture("btn_attack.png");
         btn_attack=new AttackButton(new Vector2(PixEmpires.WIDTH-50,PixEmpires.HEIGHT-112),
                 new Vector2(32,32), new TextureRegion(texture),this);
+
+
         //endregion
 
         //region Create Character Buttons
         texture=new Texture("btn_castle.png");
         normalArcherCreateCharacterButton=new CreateCharacterButton<Soldier>(new Vector2(PixEmpires.WIDTH-512,PixEmpires.HEIGHT-48),
+                new Vector2(32,32), new TextureRegion(texture));
+
+        aIArcherCreateCharacterButton=new CreateCharacterButton<Soldier>(new Vector2(PixEmpires.WIDTH-400,PixEmpires.HEIGHT-48),
                 new Vector2(32,32), new TextureRegion(texture));
 
         //endregion
@@ -87,6 +95,7 @@ public  class GameWorld {
 
         //region CreateButtons
         normalArcherCreateCharacterButton.render(sprite_batch);
+        aIArcherCreateCharacterButton.render(sprite_batch);
         //endregion
 
         //region Military
@@ -106,7 +115,10 @@ public  class GameWorld {
             //region Create Characters
 
             normalArcherCreateCharacterButton.AddChacter(
-                    player .getCharacters().soldiers,new NormalArcher(this,player.getCommandPositions(),player.getFlibX()),touch_position
+                    player.getCharacters().soldiers,new NormalArcher(this,player.getCommandPositions(),player.getFlibX()),touch_position
+            );
+            aIArcherCreateCharacterButton.AddChacter(
+                    artificial_intelligence.getCharacters().soldiers,new NormalArcher(this,artificial_intelligence.getCommandPositions(),artificial_intelligence.getFlibX()),touch_position
             );
             //endregion
         }
@@ -117,6 +129,7 @@ public  class GameWorld {
         //region Military
         player.getCharacters().update(delta);
         artificial_intelligence.getCharacters().update(delta);
+        trigger.onTriggerEnter(player.getCharacters().soldiers,artificial_intelligence.getCharacters().soldiers);
         //endregion
     }
 

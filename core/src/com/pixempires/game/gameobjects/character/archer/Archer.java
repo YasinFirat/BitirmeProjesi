@@ -9,8 +9,9 @@ import com.pixempires.game.gameobjects.character.Soldier;
 import com.pixempires.game.other.CommandPositions;
 
 public abstract class Archer extends Soldier {
-    public Archer(GameWorld game_world, CommandPositions command_positions){
-        super(game_world,command_positions);
+    public Archer(GameWorld game_world, CommandPositions command_positions,boolean isLookRight){
+        super(game_world,command_positions,isLookRight);
+
     }
     public Archer(){
         super();

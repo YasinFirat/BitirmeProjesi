@@ -23,7 +23,7 @@ public class PlayState extends State {
         gameWorld=new GameWorld();
 
 
-        Texture back_ground=new Texture("map_1.png");
+        Texture back_ground=new Texture("map_3.png");
 
         Texture archer_tex=new Texture("spr_ArcherAttack_strip_NoBkg.png");
         back_ground_reg=new TextureRegion(back_ground);
@@ -51,10 +51,7 @@ public class PlayState extends State {
 
     }
     public void update(float delta) {
-
-
         gameWorld.update(delta);
-
     }
 
     protected void handleInput() {
